@@ -1,0 +1,10 @@
+.footerList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  list-style-type: none;
+}
+.footerItem {
+  padding: 8px;
+}
