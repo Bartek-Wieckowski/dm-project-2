@@ -1,10 +1,4 @@
-import Link from 'next/link'
-
+import styles from './page.module.css';
 export default function Home() {
-  return (
-    <main>
-     <Link href={{pathname: "/products",query: {name: "Adam"}}}>Products</Link>
-     products/1?name=Adam
-    </main>
-  );
+  return <main className={styles.main}>Homepage</main>;
 }
