@@ -1,0 +1,17 @@
+.adminWrapper {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  width: 100%;
+  min-height: 75vh;
+  overflow-y: auto;
+  border: 1px solid white;
+}
+.adminAside {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-right: 1px solid white;
+}
+.adminContent {
+  text-align: center;
+}
