@@ -1,4 +1,7 @@
+import { processEnv } from '../../../config/config';
+
 export default function TermsPage() {
-    return <div>Terms</div>;
-  }
-  
+  const value = processEnv.NEXT_PUBLIC_USERNAME;
+
+  return <div>{value}</div>;
+}
