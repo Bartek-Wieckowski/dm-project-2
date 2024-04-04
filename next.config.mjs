@@ -9,6 +9,10 @@ const nextConfig = {
         port: '',
         pathname: '/my-bucket/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
     ],
   },
    experimental: {
