@@ -4,7 +4,7 @@ import styles from './navbar.module.css';
 import { usePathname } from 'next/navigation';
 
 type NavbarItemProps = {
-  path: Object;
+  path: string;
   label: string;
 };
 
