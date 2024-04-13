@@ -17,4 +17,3 @@ export const routes = [
  ...footerRoutes,
 ];
 
-export default routes;

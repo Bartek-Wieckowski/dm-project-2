@@ -1,5 +1,5 @@
+import { footerRoutes } from "@/lib/routes";
 import FooterItem from "./FooterItem";
-import footerRoutes from "./footer-data";
 import styles from "./footer.module.css"
 
 export default function FooterList() {

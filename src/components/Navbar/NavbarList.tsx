@@ -1,5 +1,5 @@
+import { routes } from '@/lib/routes';
 import NavbarItem from './NavbarItem';
-import routes from './navbar-data';
 import styles from './navbar.module.css';
 
 export default function NavbarList() {
