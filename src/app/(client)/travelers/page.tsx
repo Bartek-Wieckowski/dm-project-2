@@ -7,3 +7,11 @@ export default function TravelersPage() {
     </section>
   );
 }
+
+export async function generateStaticParams() {
+  const posts = await fetch('https://dummyjson.com/users/search?q=John').then((res) => res.json())
+ 
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
