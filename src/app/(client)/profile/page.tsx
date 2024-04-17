@@ -1,14 +1,14 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-type ProfileType = {
+type Profile = {
   id: string;
   name: string;
   status: string;
 };
 
 export default function ProfilePage() {
-  const [profile, setProfile] = useState<ProfileType | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [err, setErr] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
