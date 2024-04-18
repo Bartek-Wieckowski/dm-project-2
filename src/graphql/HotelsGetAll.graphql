@@ -1,0 +1,9 @@
+query HotelsGetAll($limit: Int!) {
+  hotels(first: $limit) {
+    description
+    destinations {
+      name
+      description
+    }
+  }
+}

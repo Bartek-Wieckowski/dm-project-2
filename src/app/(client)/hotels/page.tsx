@@ -1,34 +1,17 @@
+import { getAllHotels } from '@/graphql/queries';
 import Link from 'next/link';
-import { unstable_noStore as noStore } from 'next/cache';
 
-type Hotels = {
-  id: string;
-  slug: string;
-  name: string;
-};
-
-async function getHotels(): Promise<Hotels[]> {
-  
-  
-  const data = [
-    { id: '1', slug: 'triada', name: 'Triada' },
-    { id: '2', slug: 'filozof', name: 'Filozof' },
-    { id: '3', slug: 'artemida', name: 'Artemida' },
-  ];
-
-  return data;
-}
+export const dynamic = 'force-dynamic';
 
 export default async function HotelsPage() {
-  noStore();
-  const data = await getHotels();
+  const { hotels } = await getAllHotels();
 
   return (
     <nav>
-      {data.map((hotel) => (
-        <ul key={hotel.id}>
+      {hotels.map((hotel) => (
+        <ul key={hotel.description}>
           <li>
-            <Link href={`/hotels/${hotel.slug}`}>{hotel.name}</Link>
+            <Link href={`/hotels/${hotel.description}`}>{hotel.description}</Link>
           </li>
         </ul>
       ))}

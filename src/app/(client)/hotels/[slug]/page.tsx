@@ -1,24 +1,23 @@
 import { Suspense } from 'react';
 import Loading from './loading';
 
-async function simulatePromise() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(true);
-    }, 3000);
-  });
-}
-
-async function DataDummy() {
-  const res = await simulatePromise();
-  return <div>{res as boolean}</div>;
-}
-
 export default function HotelPage({ params }: { params: { slug: string } }) {
   return (
     <Suspense fallback={<Loading />}>
-      <DataDummy/>
       <div>{params.slug}</div>
     </Suspense>
   );
 }
+
+export async function generateStaticParams() {
+  const data = [
+    { id: '1', slug: 'triada', name: 'Triada' },
+    { id: '2', slug: 'filozof', name: 'Filozof' },
+    { id: '3', slug: 'artemida', name: 'Artemida' },
+  ];
+
+  return data.map((post) => ({
+    slug: post.slug,
+  }));
+}
+// export const dynamicParams = false
