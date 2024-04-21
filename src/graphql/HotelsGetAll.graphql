@@ -3,7 +3,22 @@ query HotelsGetAll($limit: Int!) {
     description
     destinations {
       name
-      description
+      hotels {
+        name
+      }
+      location {
+        distance(from: {latitude: 1.5, longitude: 1.5})
+        latitude
+        longitude
+      }
+      id
     }
+    id
+    photos {
+      fileName
+      url
+    }
+    name
+    rooms
   }
 }
