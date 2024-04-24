@@ -5164,12 +5164,19 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type HotelGetSingleQueryVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type HotelGetSingleQuery = { hotel?: { name: string, description?: string | null, phone?: string | null, rooms?: number | null } | null };
+
 export type HotelsGetAllQueryVariables = Exact<{
   limit: Scalars['Int']['input'];
 }>;
 
 
-export type HotelsGetAllQuery = { hotels: Array<{ description?: string | null, destinations: Array<{ name: string, description?: string | null }> }> };
+export type HotelsGetAllQuery = { hotels: Array<{ description?: string | null, id: string, name: string, rooms?: number | null, destinations: Array<{ name: string, id: string, hotels: Array<{ name: string }>, location?: { distance: number, latitude: number, longitude: number } | null }>, photos: Array<{ fileName: string, url: string }> }> };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -5186,14 +5193,39 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const HotelGetSingleDocument = new TypedDocumentString(`
+    query HotelGetSingle($id: ID) {
+  hotel(where: {id: $id}) {
+    name
+    description
+    phone
+    rooms
+  }
+}
+    `) as unknown as TypedDocumentString<HotelGetSingleQuery, HotelGetSingleQueryVariables>;
 export const HotelsGetAllDocument = new TypedDocumentString(`
     query HotelsGetAll($limit: Int!) {
   hotels(first: $limit) {
     description
     destinations {
       name
-      description
+      hotels {
+        name
+      }
+      location {
+        distance(from: {latitude: 1.5, longitude: 1.5})
+        latitude
+        longitude
+      }
+      id
     }
+    id
+    photos {
+      fileName
+      url
+    }
+    name
+    rooms
   }
 }
     `) as unknown as TypedDocumentString<HotelsGetAllQuery, HotelsGetAllQueryVariables>;

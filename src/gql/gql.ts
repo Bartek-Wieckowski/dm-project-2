@@ -14,13 +14,18 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query HotelsGetAll($limit: Int!) {\n  hotels(first: $limit) {\n    description\n    destinations {\n      name\n      description\n    }\n  }\n}": types.HotelsGetAllDocument,
+    "query HotelGetSingle($id: ID) {\n  hotel(where: {id: $id}) {\n    name\n    description\n    phone\n    rooms\n  }\n}": types.HotelGetSingleDocument,
+    "query HotelsGetAll($limit: Int!) {\n  hotels(first: $limit) {\n    description\n    destinations {\n      name\n      hotels {\n        name\n      }\n      location {\n        distance(from: {latitude: 1.5, longitude: 1.5})\n        latitude\n        longitude\n      }\n      id\n    }\n    id\n    photos {\n      fileName\n      url\n    }\n    name\n    rooms\n  }\n}": types.HotelsGetAllDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query HotelsGetAll($limit: Int!) {\n  hotels(first: $limit) {\n    description\n    destinations {\n      name\n      description\n    }\n  }\n}"): typeof import('./graphql').HotelsGetAllDocument;
+export function graphql(source: "query HotelGetSingle($id: ID) {\n  hotel(where: {id: $id}) {\n    name\n    description\n    phone\n    rooms\n  }\n}"): typeof import('./graphql').HotelGetSingleDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query HotelsGetAll($limit: Int!) {\n  hotels(first: $limit) {\n    description\n    destinations {\n      name\n      hotels {\n        name\n      }\n      location {\n        distance(from: {latitude: 1.5, longitude: 1.5})\n        latitude\n        longitude\n      }\n      id\n    }\n    id\n    photos {\n      fileName\n      url\n    }\n    name\n    rooms\n  }\n}"): typeof import('./graphql').HotelsGetAllDocument;
 
 
 export function graphql(source: string) {

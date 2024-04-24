@@ -1,0 +1,15 @@
+.hotelCard {
+  display: flex;
+  flex-direction: column;
+  gap:3rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 40rem;
+  width: 100%;
+}
+.hotelCardMoreInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
