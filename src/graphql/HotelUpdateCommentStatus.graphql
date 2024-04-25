@@ -1,0 +1,5 @@
+mutation HotelUpdateCommentStatus($commentID: ID) {
+  publishReview(where: { id: $commentID }) {
+    id
+  }
+}
