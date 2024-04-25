@@ -1,0 +1,11 @@
+mutation HotelCreateComment($username: String, $comment: String, $hotelName: String) {
+  createReview(
+    data: {
+      attribution: $username
+      comment: $comment
+      hotel: { connect: { name: $hotelName } }
+    }
+  ) {
+    id
+  }
+}
