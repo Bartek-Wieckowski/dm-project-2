@@ -14,14 +14,29 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "mutation HotelCreateComment($attribution: String, $comment: String, $hotelName: String) {\n  createReview(\n    data: {attribution: $attribution, comment: $comment, hotel: {connect: {name: $hotelName}}}\n  ) {\n    id\n  }\n}": types.HotelCreateCommentDocument,
+    "query HotelGetAllComments($hotelName: String) {\n  hotel(where: {name: $hotelName}) {\n    reviews {\n      comment\n      attribution\n      createdAt\n      id\n    }\n  }\n}": types.HotelGetAllCommentsDocument,
     "query HotelGetSingle($id: ID) {\n  hotel(where: {id: $id}) {\n    name\n    description\n    phone\n    rooms\n  }\n}": types.HotelGetSingleDocument,
+    "mutation HotelUpdateCommentStatus($commentID: ID) {\n  publishReview(where: {id: $commentID}) {\n    id\n  }\n}": types.HotelUpdateCommentStatusDocument,
     "query HotelsGetAll($limit: Int!) {\n  hotels(first: $limit) {\n    description\n    destinations {\n      name\n      hotels {\n        name\n      }\n      location {\n        distance(from: {latitude: 1.5, longitude: 1.5})\n        latitude\n        longitude\n      }\n      id\n    }\n    id\n    photos {\n      fileName\n      url\n    }\n    name\n    rooms\n  }\n}": types.HotelsGetAllDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "mutation HotelCreateComment($attribution: String, $comment: String, $hotelName: String) {\n  createReview(\n    data: {attribution: $attribution, comment: $comment, hotel: {connect: {name: $hotelName}}}\n  ) {\n    id\n  }\n}"): typeof import('./graphql').HotelCreateCommentDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query HotelGetAllComments($hotelName: String) {\n  hotel(where: {name: $hotelName}) {\n    reviews {\n      comment\n      attribution\n      createdAt\n      id\n    }\n  }\n}"): typeof import('./graphql').HotelGetAllCommentsDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "query HotelGetSingle($id: ID) {\n  hotel(where: {id: $id}) {\n    name\n    description\n    phone\n    rooms\n  }\n}"): typeof import('./graphql').HotelGetSingleDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation HotelUpdateCommentStatus($commentID: ID) {\n  publishReview(where: {id: $commentID}) {\n    id\n  }\n}"): typeof import('./graphql').HotelUpdateCommentStatusDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

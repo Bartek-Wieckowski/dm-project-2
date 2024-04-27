@@ -1,10 +1,19 @@
 import { Suspense } from 'react';
+import { getAllHotels, getHotelAllComments, getSingleHotel } from '@/graphql/queries';
 import Loading from './loading';
-import { getAllHotels, getSingleHotel } from '@/graphql/queries';
-import styles from "./hotelDetails.module.css"
+import styles from './hotelDetails.module.css';
+import CommentsSection from '@/components/Comments/CommentsSection';
+
+export const dynamic = 'force-dynamic';
 
 export default async function HotelPage({ params }: { params: { slug: string } }) {
   const { hotel: singleHotel } = await getSingleHotel(params.slug);
+
+  if (!singleHotel) return <></>;
+
+  const { hotel } = await getHotelAllComments(singleHotel.name);
+  const comments = hotel?.reviews || [];
+
   return (
     <Suspense fallback={<Loading />}>
       <div className={styles.hotelCard}>
@@ -14,6 +23,10 @@ export default async function HotelPage({ params }: { params: { slug: string } }
           <span>{singleHotel?.rooms}</span>
         </div>
         <p>{singleHotel?.description}</p>
+      </div>
+      <hr style={{ width: '100%' }} />
+      <div className={styles.hotelForm}>
+        <CommentsSection hotelName={singleHotel.name} comments={comments} />
       </div>
     </Suspense>
   );
@@ -26,4 +39,3 @@ export async function generateStaticParams() {
     slug: hotel.id,
   }));
 }
-// export const dynamicParams = false

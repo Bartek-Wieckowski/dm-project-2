@@ -3212,6 +3212,7 @@ export type RgbaInput = {
 
 export type Review = Entity & Node & {
   attribution?: Maybe<Scalars['String']['output']>;
+  comment?: Maybe<Scalars['String']['output']>;
   content?: Maybe<RichText>;
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
@@ -3305,6 +3306,7 @@ export type ReviewConnection = {
 
 export type ReviewCreateInput = {
   attribution?: InputMaybe<Scalars['String']['input']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
   content?: InputMaybe<Scalars['RichTextAST']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   hotel?: InputMaybe<HotelCreateOneInlineInput>;
@@ -3362,6 +3364,25 @@ export type ReviewManyWhereInput = {
   attribution_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   attribution_starts_with?: InputMaybe<Scalars['String']['input']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  comment_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  comment_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  comment_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  comment_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  comment_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  comment_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  comment_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  comment_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  comment_starts_with?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3441,6 +3462,8 @@ export type ReviewManyWhereInput = {
 export type ReviewOrderByInput =
   | 'attribution_ASC'
   | 'attribution_DESC'
+  | 'comment_ASC'
+  | 'comment_DESC'
   | 'createdAt_ASC'
   | 'createdAt_DESC'
   | 'id_ASC'
@@ -3452,6 +3475,7 @@ export type ReviewOrderByInput =
 
 export type ReviewUpdateInput = {
   attribution?: InputMaybe<Scalars['String']['input']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
   content?: InputMaybe<Scalars['RichTextAST']['input']>;
   hotel?: InputMaybe<HotelUpdateOneInlineInput>;
 };
@@ -3475,6 +3499,7 @@ export type ReviewUpdateManyInlineInput = {
 
 export type ReviewUpdateManyInput = {
   attribution?: InputMaybe<Scalars['String']['input']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
   content?: InputMaybe<Scalars['RichTextAST']['input']>;
 };
 
@@ -3556,6 +3581,25 @@ export type ReviewWhereInput = {
   attribution_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   attribution_starts_with?: InputMaybe<Scalars['String']['input']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  comment_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  comment_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  comment_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  comment_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  comment_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  comment_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  comment_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  comment_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  comment_starts_with?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -5164,12 +5208,35 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type HotelCreateCommentMutationVariables = Exact<{
+  attribution?: InputMaybe<Scalars['String']['input']>;
+  comment?: InputMaybe<Scalars['String']['input']>;
+  hotelName?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type HotelCreateCommentMutation = { createReview?: { id: string } | null };
+
+export type HotelGetAllCommentsQueryVariables = Exact<{
+  hotelName?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type HotelGetAllCommentsQuery = { hotel?: { reviews: Array<{ comment?: string | null, attribution?: string | null, createdAt: unknown, id: string }> } | null };
+
 export type HotelGetSingleQueryVariables = Exact<{
   id?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
 
 export type HotelGetSingleQuery = { hotel?: { name: string, description?: string | null, phone?: string | null, rooms?: number | null } | null };
+
+export type HotelUpdateCommentStatusMutationVariables = Exact<{
+  commentID?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type HotelUpdateCommentStatusMutation = { publishReview?: { id: string } | null };
 
 export type HotelsGetAllQueryVariables = Exact<{
   limit: Scalars['Int']['input'];
@@ -5193,6 +5260,27 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const HotelCreateCommentDocument = new TypedDocumentString(`
+    mutation HotelCreateComment($attribution: String, $comment: String, $hotelName: String) {
+  createReview(
+    data: {attribution: $attribution, comment: $comment, hotel: {connect: {name: $hotelName}}}
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<HotelCreateCommentMutation, HotelCreateCommentMutationVariables>;
+export const HotelGetAllCommentsDocument = new TypedDocumentString(`
+    query HotelGetAllComments($hotelName: String) {
+  hotel(where: {name: $hotelName}) {
+    reviews {
+      comment
+      attribution
+      createdAt
+      id
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<HotelGetAllCommentsQuery, HotelGetAllCommentsQueryVariables>;
 export const HotelGetSingleDocument = new TypedDocumentString(`
     query HotelGetSingle($id: ID) {
   hotel(where: {id: $id}) {
@@ -5203,6 +5291,13 @@ export const HotelGetSingleDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<HotelGetSingleQuery, HotelGetSingleQueryVariables>;
+export const HotelUpdateCommentStatusDocument = new TypedDocumentString(`
+    mutation HotelUpdateCommentStatus($commentID: ID) {
+  publishReview(where: {id: $commentID}) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<HotelUpdateCommentStatusMutation, HotelUpdateCommentStatusMutationVariables>;
 export const HotelsGetAllDocument = new TypedDocumentString(`
     query HotelsGetAll($limit: Int!) {
   hotels(first: $limit) {

@@ -1,0 +1,10 @@
+query HotelGetAllComments($hotelName: String) {
+  hotel(where: {name: $hotelName}) {
+    reviews {
+      comment
+      attribution
+      createdAt
+      id
+    }
+  }
+}

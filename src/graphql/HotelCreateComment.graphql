@@ -1,7 +1,7 @@
-mutation HotelCreateComment($username: String, $comment: String, $hotelName: String) {
+mutation HotelCreateComment($attribution: String, $comment: String, $hotelName: String) {
   createReview(
     data: {
-      attribution: $username
+      attribution: $attribution
       comment: $comment
       hotel: { connect: { name: $hotelName } }
     }
