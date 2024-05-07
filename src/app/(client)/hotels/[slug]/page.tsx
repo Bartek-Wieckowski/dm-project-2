@@ -3,13 +3,14 @@ import { getAllHotels, getHotelAllComments, getSingleHotel } from '@/graphql/que
 import Loading from './loading';
 import styles from './hotelDetails.module.css';
 import CommentsSection from '@/components/Comments/CommentsSection';
+import { notFound } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
 
 export default async function HotelPage({ params }: { params: { slug: string } }) {
   const { hotel: singleHotel } = await getSingleHotel(params.slug);
 
-  if (!singleHotel) return <></>;
+  if (!singleHotel) return notFound();
 
   const { hotel } = await getHotelAllComments(singleHotel.name);
   const comments = hotel?.reviews || [];
