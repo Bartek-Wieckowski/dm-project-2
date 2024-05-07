@@ -1,8 +1,12 @@
 query HotelGetSingle($id: ID) {
-  hotel(where: { id: $id }) {
+  hotel(where: {id: $id}) {
     name
     description
     phone
     rooms
+    photos {
+      id
+      url
+    }
   }
 }

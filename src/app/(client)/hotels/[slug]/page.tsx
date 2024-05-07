@@ -4,8 +4,26 @@ import Loading from './loading';
 import styles from './hotelDetails.module.css';
 import CommentsSection from '@/components/Comments/CommentsSection';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import Image from 'next/image';
 
 export const dynamic = 'force-dynamic';
+
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+
+  const { hotel: singleHotel } = await getSingleHotel(slug);
+
+  return {
+    title: singleHotel?.name,
+    description: singleHotel?.description,
+  };
+}
 
 export default async function HotelPage({ params }: { params: { slug: string } }) {
   const { hotel: singleHotel } = await getSingleHotel(params.slug);
@@ -22,6 +40,9 @@ export default async function HotelPage({ params }: { params: { slug: string } }
         <div className={styles.hotelCardMoreInfo}>
           <span>{singleHotel?.phone}</span>
           <span>{singleHotel?.rooms}</span>
+        </div>
+        <div>
+          <Image width={400} height={400} src={singleHotel.photos[0].url} alt={singleHotel.name} />
         </div>
         <p>{singleHotel?.description}</p>
       </div>

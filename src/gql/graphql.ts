@@ -5229,7 +5229,7 @@ export type HotelGetSingleQueryVariables = Exact<{
 }>;
 
 
-export type HotelGetSingleQuery = { hotel?: { name: string, description?: string | null, phone?: string | null, rooms?: number | null } | null };
+export type HotelGetSingleQuery = { hotel?: { name: string, description?: string | null, phone?: string | null, rooms?: number | null, photos: Array<{ id: string, url: string }> } | null };
 
 export type HotelUpdateCommentStatusMutationVariables = Exact<{
   commentID?: InputMaybe<Scalars['ID']['input']>;
@@ -5288,6 +5288,10 @@ export const HotelGetSingleDocument = new TypedDocumentString(`
     description
     phone
     rooms
+    photos {
+      id
+      url
+    }
   }
 }
     `) as unknown as TypedDocumentString<HotelGetSingleQuery, HotelGetSingleQueryVariables>;
