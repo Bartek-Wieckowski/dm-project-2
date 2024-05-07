@@ -1,3 +1,4 @@
+export const BASE_URL = "http://localhost:3000"
 export function formatDate(dateStr: string) {
   return new Intl.DateTimeFormat('en', {
     day: 'numeric',

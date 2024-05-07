@@ -6,7 +6,7 @@ type BlogPage = {
   title: string;
 };
 
-async function getPosts() {
+export async function getPosts() {
   const blogPosts = [
     {
       id: '1',
