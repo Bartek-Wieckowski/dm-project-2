@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 type Props = {
   params: { slug: string };
@@ -18,6 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
 
   const { hotel: singleHotel } = await getSingleHotel(slug);
+
+  if(!singleHotel){
+    notFound()
+  }
 
   return {
     title: singleHotel?.name,

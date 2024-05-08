@@ -5,8 +5,8 @@ import { getAllHotels } from '@/graphql/queries';
 import { getPosts } from './(client)/blog/page';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const { hotels } = await getAllHotels();
-  const posts = await getPosts();
+  const [{hotels},posts]=await Promise.all([ getAllHotels(),getPosts()])
+
   return [
     {
       priority: 1,
