@@ -2,10 +2,10 @@ import { MetadataRoute } from 'next/types';
 
 import { BASE_URL } from '@/lib/helpers';
 import { getAllHotels } from '@/graphql/queries';
-import { getPosts } from './(client)/blog/page';
+import { getPostsFileNames } from '@/lib/blogUtils';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [{hotels},posts]=await Promise.all([ getAllHotels(),getPosts()])
+  const [{ hotels }, posts] = await Promise.all([getAllHotels(), getPostsFileNames()]);
 
   return [
     {
@@ -27,10 +27,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
       url: `${BASE_URL}/blog`,
     },
-    ...posts.map((post: { slug: string }) => ({
+    ...posts.map((post) => ({
       lastModified: new Date().toISOString(),
       priority: 0.7,
-      url: `${BASE_URL}/blog/${post.slug}`,
+      url: `${BASE_URL}/blog/${post}`,
     })),
   ];
 }

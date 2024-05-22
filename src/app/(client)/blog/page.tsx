@@ -1,47 +1,17 @@
+import { getPostsFileNames } from '@/lib/blogUtils';
+import { formatFileName } from '@/lib/helpers';
 import Link from 'next/link';
 
-type BlogPage = {
-  id: string;
-  slug: string;
-  title: string;
-};
+export const dynamic = 'force-dynamic';
 
-export async function getPosts() {
-  const blogPosts = [
-    {
-      id: '1',
-      slug: 'first-post',
-      title: 'My First Blog Post',
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      author: 'John Doe',
-    },
-    {
-      id: '2',
-      slug: 'second-post',
-      title: 'Another Blog Post',
-      content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      author: 'Jane Smith',
-    },
-    {
-      id: '3',
-      slug: 'third-post',
-      title: 'Exciting News!',
-      content: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      author: 'Alex Johnson',
-    },
-  ];
-
-  return blogPosts;
-}
-
-export default async function BlogPage() {
-  const posts = await getPosts();
+export default function BlogPage() {
+  const fileNames = getPostsFileNames();
   return (
     <>
       <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+        {fileNames.map((file) => (
+          <li key={file}>
+            <Link href={`/blog/${file}`}>{formatFileName(file)}</Link>
           </li>
         ))}
       </ul>
