@@ -1,16 +1,24 @@
-import { getAllHotels } from '@/graphql/queries';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './hotels.module.css';
+import { BASE_URL } from '@/lib/helpers';
+import { HotelPlace } from '@/types/types';
 
 export const dynamic = 'force-dynamic';
+
+const getAllHotels = async () => {
+  const res = await fetch(`${BASE_URL}/api/allHotels`);
+  const data = await res.json();
+
+  return data;
+};
 
 export default async function HotelsPage() {
   const { hotels } = await getAllHotels();
 
   return (
     <section>
-      {hotels.map((hotel, index) => {
+      {hotels.map((hotel: HotelPlace) => {
         const getHotelName = hotel.destinations.map((h, i) => h.hotels[i].name);
         const getHotelPhoto = hotel.photos.map((h) => h.url);
         return (
