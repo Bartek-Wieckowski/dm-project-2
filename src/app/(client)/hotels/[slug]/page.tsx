@@ -6,8 +6,9 @@ import CommentsSection from '@/components/Comments/CommentsSection';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import HotelContectUs from '@/components/HotelContactUs/HotelContectUs';
 
-// export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 
 type Props = {
   params: { slug: string };
@@ -19,8 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const { hotel: singleHotel } = await getSingleHotel(slug);
 
-  if(!singleHotel){
-    notFound()
+  if (!singleHotel) {
+    notFound();
   }
 
   return {
@@ -53,6 +54,10 @@ export default async function HotelPage({ params }: { params: { slug: string } }
       <hr style={{ width: '100%' }} />
       <div className={styles.hotelForm}>
         <CommentsSection hotelName={singleHotel.name} comments={comments} />
+      </div>
+      <hr style={{ width: '100%' }} />
+      <div className={styles.hotelForm}>
+        <HotelContectUs hotelName={singleHotel.name} />
       </div>
     </Suspense>
   );

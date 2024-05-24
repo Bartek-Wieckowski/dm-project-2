@@ -1,0 +1,49 @@
+.inputWrapper {
+  display: block;
+  margin-bottom: 1rem;
+}
+.inputWrapper input {
+  padding: 0.5rem;
+}
+.buttonSend {
+  background-color: tomato;
+  color: white;
+  border-radius: 12px;
+  padding: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+.buttonSend:hover {
+  background-color: rgb(145, 29, 9);
+}
+.buttonSend:disabled {
+  background-color: tomato;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.hotelComments {
+  margin-block: 1rem;
+  max-width: 40rem;
+  width: 100%;
+}
+.hotelComments h3 {
+  text-align: center;
+}
+.commentItem {
+  width: 100%;
+  padding: 1rem 0;
+  border-bottom: 1px solid tomato;
+}
+.commentAuthorDate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.commentContent {
+  text-align: center;
+  margin-block: 1rem;
+}
+.errorMsg {
+  color: red;
+}
