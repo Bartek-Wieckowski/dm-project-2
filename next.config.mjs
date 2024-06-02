@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    optimizeFonts: true,
-     images: {
-     remotePatterns: [
+  optimizeFonts: true,
+  images: {
+    remotePatterns: [
       {
         protocol: 'https',
         hostname: 's3.amazonaws.com',

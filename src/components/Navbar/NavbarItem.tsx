@@ -13,7 +13,7 @@ export default function NavbarItem({ path, label }: NavbarItemProps) {
   const isActive = pathname === path;
   return (
     <li className={styles.navbarItem}>
-      <Link href={path} className={isActive ? styles.activeLink : ''}>
+      <Link prefetch={true} href={path} className={isActive ? styles.activeLink : ''}>
         {label}
       </Link>
     </li>
