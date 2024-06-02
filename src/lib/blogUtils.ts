@@ -21,6 +21,7 @@ type Post = {
 
 const PATH_TO_BLOG_POSTS = '/src/app/(client)/blog/[slug]/(blogPosts)';
 
+// tak było
 // export const getPostsFileNames = () => {
 //   const dir = path.join(process.cwd(), PATH_TO_BLOG_POSTS);
 //   const NAME_PART = 0;
