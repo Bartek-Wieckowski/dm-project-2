@@ -6,7 +6,7 @@ export async function GET(request: Request) {
     const { hotels } = await getAllHotels();
 
     if (!hotels) {
-      throw new Error('Invalid hotel data received');
+      return NextResponse.json({code: 404})
     }
 
     return NextResponse.json({ hotels });
