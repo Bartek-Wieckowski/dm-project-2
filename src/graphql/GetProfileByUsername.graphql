@@ -1,0 +1,9 @@
+query GetUserByUsername($username: String!) {
+  userProfiles(where: { userProfileName: $username }, first: 1) {
+    userProfileName
+    userProfileAvatar
+    userProfilePassword
+    id
+    stage
+  }
+}

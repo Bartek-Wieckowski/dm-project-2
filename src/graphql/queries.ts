@@ -1,4 +1,4 @@
-import { HotelGetAllCommentsDocument, HotelGetSingleDocument, HotelsGetAllDocument } from '@/gql/graphql';
+import { GetUserByUsernameDocument, HotelGetAllCommentsDocument, HotelGetSingleDocument, HotelsGetAllDocument } from '@/gql/graphql';
 import { executeServerGraphql } from './client';
 
 export const getAllHotels = async () => {
@@ -10,3 +10,25 @@ export const getSingleHotel = async (hotelId: string) => {
 export const getHotelAllComments = async (hotelName: string) => {
   return await executeServerGraphql(HotelGetAllCommentsDocument, { hotelName: hotelName });
 };
+export const getProfileByUsername = async (username: string) => {
+  return await executeServerGraphql(GetUserByUsernameDocument, { username: username });
+};
+
+// export const getProfileByUsername = async (username: string) => {
+//   try {
+//     const response = await executeServerGraphql(GetUserByUsernameDocument, { username: username });
+//     console.log('GraphQL Response:', response);
+
+//     if (response && response.userProfiles) {
+//       const user = response.userProfiles.find((profile) => profile.userProfileName === username);
+//       console.log('Found user:', user);
+//       return user;
+//     }
+
+//     console.log('User not found in GraphQL response.');
+//     return null;
+//   } catch (error) {
+//     console.error('Error fetching user profile:', error);
+//     throw new Error('Error');
+//   }
+// };

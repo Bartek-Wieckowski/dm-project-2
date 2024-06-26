@@ -1394,7 +1394,8 @@ export type EntityTypeName =
   /** Scheduled Release system model */
   | 'ScheduledRelease'
   /** User system model */
-  | 'User';
+  | 'User'
+  | 'UserProfile';
 
 /** Allows to specify input to query models and components directly */
 export type EntityWhereInput = {
@@ -2155,6 +2156,8 @@ export type Mutation = {
   createReview?: Maybe<Review>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Create one userProfile */
+  createUserProfile?: Maybe<UserProfile>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
   deleteAsset?: Maybe<Asset>;
   /** Delete one destination from _all_ existing stages. Returns deleted document. */
@@ -2189,12 +2192,21 @@ export type Mutation = {
   deleteManyReviews: BatchPayload;
   /** Delete many Review documents, return deleted documents */
   deleteManyReviewsConnection: ReviewConnection;
+  /**
+   * Delete many UserProfile documents
+   * @deprecated Please use the new paginated many mutation (deleteManyUserProfilesConnection)
+   */
+  deleteManyUserProfiles: BatchPayload;
+  /** Delete many UserProfile documents, return deleted documents */
+  deleteManyUserProfilesConnection: UserProfileConnection;
   /** Delete one review from _all_ existing stages. Returns deleted document. */
   deleteReview?: Maybe<Review>;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Delete one userProfile from _all_ existing stages. Returns deleted document. */
+  deleteUserProfile?: Maybe<UserProfile>;
   /** Publish one asset */
   publishAsset?: Maybe<Asset>;
   /** Publish one destination */
@@ -2229,8 +2241,17 @@ export type Mutation = {
   publishManyReviews: BatchPayload;
   /** Publish many Review documents */
   publishManyReviewsConnection: ReviewConnection;
+  /**
+   * Publish many UserProfile documents
+   * @deprecated Please use the new paginated many mutation (publishManyUserProfilesConnection)
+   */
+  publishManyUserProfiles: BatchPayload;
+  /** Publish many UserProfile documents */
+  publishManyUserProfilesConnection: UserProfileConnection;
   /** Publish one review */
   publishReview?: Maybe<Review>;
+  /** Publish one userProfile */
+  publishUserProfile?: Maybe<UserProfile>;
   /** Schedule to publish one asset */
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one destination */
@@ -2239,6 +2260,8 @@ export type Mutation = {
   schedulePublishHotel?: Maybe<Hotel>;
   /** Schedule to publish one review */
   schedulePublishReview?: Maybe<Review>;
+  /** Schedule to publish one userProfile */
+  schedulePublishUserProfile?: Maybe<UserProfile>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one destination from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2247,6 +2270,8 @@ export type Mutation = {
   scheduleUnpublishHotel?: Maybe<Hotel>;
   /** Unpublish one review from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishReview?: Maybe<Review>;
+  /** Unpublish one userProfile from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishUserProfile?: Maybe<UserProfile>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one destination from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -2281,8 +2306,17 @@ export type Mutation = {
   unpublishManyReviews: BatchPayload;
   /** Find many Review documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyReviewsConnection: ReviewConnection;
+  /**
+   * Unpublish many UserProfile documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyUserProfilesConnection)
+   */
+  unpublishManyUserProfiles: BatchPayload;
+  /** Find many UserProfile documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyUserProfilesConnection: UserProfileConnection;
   /** Unpublish one review from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishReview?: Maybe<Review>;
+  /** Unpublish one userProfile from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishUserProfile?: Maybe<UserProfile>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /** Update one destination */
@@ -2317,10 +2351,19 @@ export type Mutation = {
   updateManyReviews: BatchPayload;
   /** Update many Review documents */
   updateManyReviewsConnection: ReviewConnection;
+  /**
+   * Update many userProfiles
+   * @deprecated Please use the new paginated many mutation (updateManyUserProfilesConnection)
+   */
+  updateManyUserProfiles: BatchPayload;
+  /** Update many UserProfile documents */
+  updateManyUserProfilesConnection: UserProfileConnection;
   /** Update one review */
   updateReview?: Maybe<Review>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Update one userProfile */
+  updateUserProfile?: Maybe<UserProfile>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
   /** Upsert one destination */
@@ -2329,6 +2372,8 @@ export type Mutation = {
   upsertHotel?: Maybe<Hotel>;
   /** Upsert one review */
   upsertReview?: Maybe<Review>;
+  /** Upsert one userProfile */
+  upsertUserProfile?: Maybe<UserProfile>;
 };
 
 
@@ -2354,6 +2399,11 @@ export type MutationCreateReviewArgs = {
 
 export type MutationCreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
+};
+
+
+export type MutationCreateUserProfileArgs = {
+  data: UserProfileCreateInput;
 };
 
 
@@ -2432,6 +2482,21 @@ export type MutationDeleteManyReviewsConnectionArgs = {
 };
 
 
+export type MutationDeleteManyUserProfilesArgs = {
+  where?: InputMaybe<UserProfileManyWhereInput>;
+};
+
+
+export type MutationDeleteManyUserProfilesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<UserProfileManyWhereInput>;
+};
+
+
 export type MutationDeleteReviewArgs = {
   where: ReviewWhereUniqueInput;
 };
@@ -2444,6 +2509,11 @@ export type MutationDeleteScheduledOperationArgs = {
 
 export type MutationDeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
+};
+
+
+export type MutationDeleteUserProfileArgs = {
+  where: UserProfileWhereUniqueInput;
 };
 
 
@@ -2546,9 +2616,33 @@ export type MutationPublishManyReviewsConnectionArgs = {
 };
 
 
+export type MutationPublishManyUserProfilesArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<UserProfileManyWhereInput>;
+};
+
+
+export type MutationPublishManyUserProfilesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<UserProfileManyWhereInput>;
+};
+
+
 export type MutationPublishReviewArgs = {
   to?: Array<Stage>;
   where: ReviewWhereUniqueInput;
+};
+
+
+export type MutationPublishUserProfileArgs = {
+  to?: Array<Stage>;
+  where: UserProfileWhereUniqueInput;
 };
 
 
@@ -2587,6 +2681,14 @@ export type MutationSchedulePublishReviewArgs = {
 };
 
 
+export type MutationSchedulePublishUserProfileArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: UserProfileWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2618,6 +2720,14 @@ export type MutationScheduleUnpublishReviewArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
   where: ReviewWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishUserProfileArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  where: UserProfileWhereUniqueInput;
 };
 
 
@@ -2717,9 +2827,33 @@ export type MutationUnpublishManyReviewsConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyUserProfilesArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<UserProfileManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyUserProfilesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<UserProfileManyWhereInput>;
+};
+
+
 export type MutationUnpublishReviewArgs = {
   from?: Array<Stage>;
   where: ReviewWhereUniqueInput;
+};
+
+
+export type MutationUnpublishUserProfileArgs = {
+  from?: Array<Stage>;
+  where: UserProfileWhereUniqueInput;
 };
 
 
@@ -2809,6 +2943,23 @@ export type MutationUpdateManyReviewsConnectionArgs = {
 };
 
 
+export type MutationUpdateManyUserProfilesArgs = {
+  data: UserProfileUpdateManyInput;
+  where?: InputMaybe<UserProfileManyWhereInput>;
+};
+
+
+export type MutationUpdateManyUserProfilesConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  data: UserProfileUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<UserProfileManyWhereInput>;
+};
+
+
 export type MutationUpdateReviewArgs = {
   data: ReviewUpdateInput;
   where: ReviewWhereUniqueInput;
@@ -2818,6 +2969,12 @@ export type MutationUpdateReviewArgs = {
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
+};
+
+
+export type MutationUpdateUserProfileArgs = {
+  data: UserProfileUpdateInput;
+  where: UserProfileWhereUniqueInput;
 };
 
 
@@ -2842,6 +2999,12 @@ export type MutationUpsertHotelArgs = {
 export type MutationUpsertReviewArgs = {
   upsert: ReviewUpsertInput;
   where: ReviewWhereUniqueInput;
+};
+
+
+export type MutationUpsertUserProfileArgs = {
+  upsert: UserProfileUpsertInput;
+  where: UserProfileWhereUniqueInput;
 };
 
 /** An object with an ID */
@@ -2924,6 +3087,14 @@ export type Query = {
   scheduledReleasesConnection: ScheduledReleaseConnection;
   /** Retrieve a single user */
   user?: Maybe<User>;
+  /** Retrieve a single userProfile */
+  userProfile?: Maybe<UserProfile>;
+  /** Retrieve document version */
+  userProfileVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple userProfiles */
+  userProfiles: Array<UserProfile>;
+  /** Retrieve multiple userProfiles using the Relay connection interface */
+  userProfilesConnection: UserProfileConnection;
   /** Retrieve multiple users */
   users: Array<User>;
   /** Retrieve multiple users using the Relay connection interface */
@@ -3166,6 +3337,44 @@ export type QueryUserArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: UserWhereUniqueInput;
+};
+
+
+export type QueryUserProfileArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: UserProfileWhereUniqueInput;
+};
+
+
+export type QueryUserProfileVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryUserProfilesArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<UserProfileOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<UserProfileWhereInput>;
+};
+
+
+export type QueryUserProfilesConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<UserProfileOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<UserProfileWhereInput>;
 };
 
 
@@ -3788,7 +3997,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Destination | Hotel | Review;
+export type ScheduledOperationAffectedDocument = Asset | Destination | Hotel | Review | UserProfile;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -4949,6 +5158,556 @@ export type UserOrderByInput =
   | 'updatedAt_ASC'
   | 'updatedAt_DESC';
 
+export type UserProfile = Entity & Node & {
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<UserProfile>;
+  /** List of UserProfile versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  userProfileAvatar?: Maybe<Scalars['String']['output']>;
+  userProfileId?: Maybe<Scalars['Int']['output']>;
+  userProfileName?: Maybe<Scalars['String']['output']>;
+  userProfilePassword?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type UserProfileCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type UserProfileDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type UserProfileHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type UserProfilePublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type UserProfileScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type UserProfileUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type UserProfileConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: UserProfileWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type UserProfileConnection = {
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<UserProfileEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type UserProfileCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  userProfileAvatar?: InputMaybe<Scalars['String']['input']>;
+  userProfileId?: InputMaybe<Scalars['Int']['input']>;
+  userProfileName?: InputMaybe<Scalars['String']['input']>;
+  userProfilePassword?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserProfileCreateManyInlineInput = {
+  /** Connect multiple existing UserProfile documents */
+  connect?: InputMaybe<Array<UserProfileWhereUniqueInput>>;
+  /** Create and connect multiple existing UserProfile documents */
+  create?: InputMaybe<Array<UserProfileCreateInput>>;
+};
+
+export type UserProfileCreateOneInlineInput = {
+  /** Connect one existing UserProfile document */
+  connect?: InputMaybe<UserProfileWhereUniqueInput>;
+  /** Create and connect one UserProfile document */
+  create?: InputMaybe<UserProfileCreateInput>;
+};
+
+/** An edge in a connection. */
+export type UserProfileEdge = {
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: UserProfile;
+};
+
+/** Identifies documents */
+export type UserProfileManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<UserProfileWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<UserProfileWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<UserProfileWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<UserProfileWhereStageInput>;
+  documentInStages_none?: InputMaybe<UserProfileWhereStageInput>;
+  documentInStages_some?: InputMaybe<UserProfileWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  userProfileAvatar?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  userProfileAvatar_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  userProfileAvatar_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  userProfileAvatar_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  userProfileAvatar_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  userProfileAvatar_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  userProfileAvatar_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  userProfileAvatar_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  userProfileAvatar_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  userProfileAvatar_starts_with?: InputMaybe<Scalars['String']['input']>;
+  userProfileId?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  userProfileId_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  userProfileId_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  userProfileId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  userProfileId_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  userProfileId_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  userProfileId_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  userProfileId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  userProfileName?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  userProfileName_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  userProfileName_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  userProfileName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  userProfileName_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  userProfileName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  userProfileName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  userProfileName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  userProfileName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  userProfileName_starts_with?: InputMaybe<Scalars['String']['input']>;
+  userProfilePassword?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  userProfilePassword_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  userProfilePassword_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  userProfilePassword_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  userProfilePassword_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  userProfilePassword_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  userProfilePassword_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  userProfilePassword_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  userProfilePassword_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  userProfilePassword_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserProfileOrderByInput =
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'userProfileAvatar_ASC'
+  | 'userProfileAvatar_DESC'
+  | 'userProfileId_ASC'
+  | 'userProfileId_DESC'
+  | 'userProfileName_ASC'
+  | 'userProfileName_DESC'
+  | 'userProfilePassword_ASC'
+  | 'userProfilePassword_DESC';
+
+export type UserProfileUpdateInput = {
+  userProfileAvatar?: InputMaybe<Scalars['String']['input']>;
+  userProfileId?: InputMaybe<Scalars['Int']['input']>;
+  userProfileName?: InputMaybe<Scalars['String']['input']>;
+  userProfilePassword?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserProfileUpdateManyInlineInput = {
+  /** Connect multiple existing UserProfile documents */
+  connect?: InputMaybe<Array<UserProfileConnectInput>>;
+  /** Create and connect multiple UserProfile documents */
+  create?: InputMaybe<Array<UserProfileCreateInput>>;
+  /** Delete multiple UserProfile documents */
+  delete?: InputMaybe<Array<UserProfileWhereUniqueInput>>;
+  /** Disconnect multiple UserProfile documents */
+  disconnect?: InputMaybe<Array<UserProfileWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing UserProfile documents */
+  set?: InputMaybe<Array<UserProfileWhereUniqueInput>>;
+  /** Update multiple UserProfile documents */
+  update?: InputMaybe<Array<UserProfileUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple UserProfile documents */
+  upsert?: InputMaybe<Array<UserProfileUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type UserProfileUpdateManyInput = {
+  userProfileAvatar?: InputMaybe<Scalars['String']['input']>;
+  userProfileId?: InputMaybe<Scalars['Int']['input']>;
+  userProfileName?: InputMaybe<Scalars['String']['input']>;
+  userProfilePassword?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UserProfileUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: UserProfileUpdateManyInput;
+  /** Document search */
+  where: UserProfileWhereInput;
+};
+
+export type UserProfileUpdateOneInlineInput = {
+  /** Connect existing UserProfile document */
+  connect?: InputMaybe<UserProfileWhereUniqueInput>;
+  /** Create and connect one UserProfile document */
+  create?: InputMaybe<UserProfileCreateInput>;
+  /** Delete currently connected UserProfile document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected UserProfile document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single UserProfile document */
+  update?: InputMaybe<UserProfileUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single UserProfile document */
+  upsert?: InputMaybe<UserProfileUpsertWithNestedWhereUniqueInput>;
+};
+
+export type UserProfileUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: UserProfileUpdateInput;
+  /** Unique document search */
+  where: UserProfileWhereUniqueInput;
+};
+
+export type UserProfileUpsertInput = {
+  /** Create document if it didn't exist */
+  create: UserProfileCreateInput;
+  /** Update document if it exists */
+  update: UserProfileUpdateInput;
+};
+
+export type UserProfileUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: UserProfileUpsertInput;
+  /** Unique document search */
+  where: UserProfileWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type UserProfileWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type UserProfileWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<UserProfileWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<UserProfileWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<UserProfileWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<UserProfileWhereStageInput>;
+  documentInStages_none?: InputMaybe<UserProfileWhereStageInput>;
+  documentInStages_some?: InputMaybe<UserProfileWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  userProfileAvatar?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  userProfileAvatar_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  userProfileAvatar_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  userProfileAvatar_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  userProfileAvatar_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  userProfileAvatar_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  userProfileAvatar_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  userProfileAvatar_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  userProfileAvatar_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  userProfileAvatar_starts_with?: InputMaybe<Scalars['String']['input']>;
+  userProfileId?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  userProfileId_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  userProfileId_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  userProfileId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  userProfileId_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  userProfileId_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  userProfileId_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  userProfileId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  userProfileName?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  userProfileName_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  userProfileName_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  userProfileName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  userProfileName_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  userProfileName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  userProfileName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  userProfileName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  userProfileName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  userProfileName_starts_with?: InputMaybe<Scalars['String']['input']>;
+  userProfilePassword?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  userProfilePassword_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  userProfilePassword_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  userProfilePassword_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  userProfilePassword_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  userProfilePassword_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  userProfilePassword_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  userProfilePassword_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  userProfilePassword_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  userProfilePassword_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type UserProfileWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<UserProfileWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<UserProfileWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<UserProfileWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<UserProfileWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References UserProfile record uniquely */
+export type UserProfileWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 export type UserUpdateManyInlineInput = {
   /** Connect multiple existing User documents */
   connect?: InputMaybe<Array<UserConnectInput>>;
@@ -5208,6 +5967,22 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type CreateProfileMutationMutationVariables = Exact<{
+  userProfileAvatar: Scalars['String']['input'];
+  userProfileName: Scalars['String']['input'];
+  UserProfilePassword: Scalars['String']['input'];
+}>;
+
+
+export type CreateProfileMutationMutation = { createUserProfile?: { id: string } | null };
+
+export type GetUserByUsernameQueryVariables = Exact<{
+  username: Scalars['String']['input'];
+}>;
+
+
+export type GetUserByUsernameQuery = { userProfiles: Array<{ userProfileName?: string | null, userProfileAvatar?: string | null, userProfilePassword?: string | null, id: string, stage: Stage }> };
+
 export type HotelCreateCommentMutationVariables = Exact<{
   attribution?: InputMaybe<Scalars['String']['input']>;
   comment?: InputMaybe<Scalars['String']['input']>;
@@ -5260,6 +6035,26 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const CreateProfileMutationDocument = new TypedDocumentString(`
+    mutation CreateProfileMutation($userProfileAvatar: String!, $userProfileName: String!, $UserProfilePassword: String!) {
+  createUserProfile(
+    data: {userProfileAvatar: $userProfileAvatar, userProfileName: $userProfileName, userProfilePassword: $UserProfilePassword}
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<CreateProfileMutationMutation, CreateProfileMutationMutationVariables>;
+export const GetUserByUsernameDocument = new TypedDocumentString(`
+    query GetUserByUsername($username: String!) {
+  userProfiles(where: {userProfileName: $username}, first: 1) {
+    userProfileName
+    userProfileAvatar
+    userProfilePassword
+    id
+    stage
+  }
+}
+    `) as unknown as TypedDocumentString<GetUserByUsernameQuery, GetUserByUsernameQueryVariables>;
 export const HotelCreateCommentDocument = new TypedDocumentString(`
     mutation HotelCreateComment($attribution: String, $comment: String, $hotelName: String) {
   createReview(

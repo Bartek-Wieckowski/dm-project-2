@@ -1,0 +1,7 @@
+mutation CreateProfileMutation($userProfileAvatar:String!, $userProfileName:String!, $UserProfilePassword:String!) {
+  createUserProfile(
+    data: {userProfileAvatar: $userProfileAvatar, userProfileName: $userProfileName, userProfilePassword: $UserProfilePassword}
+  ) {
+    id
+  }
+}

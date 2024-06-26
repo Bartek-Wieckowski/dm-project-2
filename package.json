@@ -14,6 +14,8 @@
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/third-parties": "^14.1.4",
+    "@stripe/stripe-js": "^4.0.0",
+    "bcryptjs": "^2.4.3",
     "contentful": "^10.11.7",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
@@ -27,12 +29,14 @@
     "react-leaflet": "^4.2.1",
     "react-syntax-highlighter": "^15.5.0",
     "rehype-highlight": "^7.0.0",
+    "stripe": "^16.0.0",
     "vfile": "^6.0.1",
     "vfile-message": "^4.0.2",
     "zod": "^3.23.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
     "@types/leaflet": "^1.9.9",
     "@types/node": "^20",
     "@types/react": "^18",
